@@ -22,7 +22,7 @@ public class ScheduleController {
     //일정 생성
     @PostMapping
     public ResponseEntity<ScheduleResponseDto> saveSchedule(@RequestBody CreateScheduleRequestDto requestDto) {
-        ScheduleResponseDto scheduleResponseDto = scheduleService.saveSchedule(requestDto.getUserName(), requestDto.getTitle(), requestDto.getContents());
+        ScheduleResponseDto scheduleResponseDto = scheduleService.saveSchedule(requestDto.getTitle(), requestDto.getContents());
 
         return new ResponseEntity<>(scheduleResponseDto, HttpStatus.CREATED);
     }

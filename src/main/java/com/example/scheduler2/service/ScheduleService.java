@@ -16,13 +16,13 @@ public class ScheduleService {
 
 
     //일정 생성
-    public ScheduleResponseDto saveSchedule(String userName, String title, String contents) {
+    public ScheduleResponseDto saveSchedule(String title, String contents) {
 
-        Schedule schedule = new Schedule(userName, title, contents);
+        Schedule schedule = new Schedule(title, contents);
 
         Schedule savedSchedule = scheduleRepository.save(schedule);
 
-        return new ScheduleResponseDto(savedSchedule.getId(), savedSchedule.getUserName(), savedSchedule.getTitle(), savedSchedule.getContents());
+        return new ScheduleResponseDto(savedSchedule.getId(), savedSchedule.getTitle(), savedSchedule.getContents());
     }
 
     //일정 전체 조회
@@ -35,7 +35,7 @@ public class ScheduleService {
     public ScheduleResponseDto findById(Long id) {
         Schedule findId = scheduleRepository.findByIdOrElseThrow(id);
 
-        return new ScheduleResponseDto(findId.getId(), findId.getUserName(), findId.getTitle(), findId.getContents());
+        return new ScheduleResponseDto(findId.getId(), findId.getTitle(), findId.getContents());
     }
 
     //선택 일정 수정
@@ -44,7 +44,7 @@ public class ScheduleService {
 
         findId.updateSchedule(title, contents);
 
-        return new ScheduleResponseDto(findId.getId(), findId.getUserName(), findId.getTitle(), findId.getContents());
+        return new ScheduleResponseDto(findId.getId(), findId.getTitle(), findId.getContents());
     }
 
     //일정 삭제
