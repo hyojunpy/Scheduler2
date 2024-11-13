@@ -1,10 +1,10 @@
-package com.example.sheduler2;
+package com.example.scheduler2;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Sheduler2ApplicationTests {
+class Scheduler2ApplicationTests {
 
     @Test
     void contextLoads() {

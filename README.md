@@ -18,8 +18,8 @@
 | userName    | VARCHAR(20)  | 작성 유저명  | N       |
 | title       | VARCHAR(200) | 일정 내용 제목   | N       |
 | contents    | VARCHAR(200) | 일정 내용 내용   | N       |
-| createAt | TIMESTAMP    | 생성일     | N       |
-| modifiedAt | TIMESTAMP    | 수정일     | N       |
+| createAt | DATETIME    | 생성일     | N       |
+| modifiedAt | DATETIME    | 수정일     | N       |
 
 RequestBody
 ```
@@ -59,8 +59,8 @@ ResopnseBody
 | userName    | VARCHAR(20)  | 작성 유저명  | N       |
 | title       | VARCHAR(200) | 일정 제목   | N       |
 | contents    | VARCHAR(200) | 일정 내용   | N       |
-| createAt | TIMESTAMP    | 생성일     | N       |
-| modifiedAt | TIMESTAMP    | 수정일     | N       |
+| createAt | DATETIME    | 생성일     | N       |
+| modifiedAt | DATETIME    | 수정일     | N       |
 
 RequestBody
 
@@ -96,8 +96,8 @@ ResopnseBody
 | title      | VARCHAR(200) | 일정 제목   | N       |
 | contents   | VARCHAR(200) | 일정 내용   | N       |
 | userName   | VARCHAR(20)  | 작성 유저명  | N       |
-| createAt | TIMESTAMP    | 생성일     | N       |
-| modifiedAt | TIMESTAMP     | 수정일     | N       |
+| createAt | DATETIME    | 생성일     | N       |
+| modifiedAt | DATETIME     | 수정일     | N       |
 
 RequestBody
 
@@ -132,7 +132,7 @@ ResopnseBody
 | title      | VARCHAR(200) | 일정 제목   | N       |
 | contents   | VARCHAR(200) | 일정 내용   | N       |
 | userName   | VARCHAR(20)  | 작성 유저명  | N       |
-| modifiedAt | TIMESTAMP    | 수정일     | N       |
+| modifiedAt | DATETIME    | 수정일     | N       |
 
 RequestBody
 
