@@ -12,7 +12,7 @@ import java.io.IOException;
 @Slf4j
 public class LoginFilter implements Filter {
 
-    private static final String[] WHITE_LIST = {"/", "/signUp","/api/login", "api/logout"};
+    private static final String[] WHITE_LIST = {"/", "/signUp", "/api/login", "api/logout"};
 
     @Override
     public void doFilter(
@@ -40,10 +40,6 @@ public class LoginFilter implements Filter {
             if (session == null || session.getAttribute("email") == null) {
                 throw new RuntimeException("로그인 해주세요.");
             }
-            //로그인 성공 로직 작성 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            //이메일 및 비밀번호 활용해 구현
-            //회원가입, 로그인 요청은 인증 처리에서 제외함
-            // 401반환 이메일과 비밀번호 불일치시
 
         }
         // 1번경우 : whiteListURL에 등록된 URL 요청이면 바로 chain.doFilter()

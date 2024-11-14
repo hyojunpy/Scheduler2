@@ -1,6 +1,7 @@
 package com.example.scheduler2.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 
 @Getter
@@ -16,6 +17,7 @@ public class Schedule extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Size(max = 11, message = "일정 제목은 10글자 이하로 작성해주세요")
     @Column(nullable = false)
     private String title;
 

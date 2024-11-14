@@ -21,7 +21,7 @@ public class UserService {
 
         User saveUser = userRepository.save(user);
 
-        return  new UserResponseDto(saveUser.getUserId(), saveUser.getUserName(), saveUser.getEmail());
+        return new UserResponseDto(saveUser.getUserId(), saveUser.getUserName(), saveUser.getEmail());
     }
 
     //유저 전체 조회
@@ -54,10 +54,11 @@ public class UserService {
         userRepository.deleteById(findId.getUserId());
     }
 
+    //이메일 및 비밀번호 검사
     public boolean loginUser(String email, String password) {
         User user = userRepository.findByEmail(email);
 
-        if(user != null && user.getPassword().equals(password)) {
+        if (user != null && user.getPassword().equals(password)) {
             return true;
         }
         return false;

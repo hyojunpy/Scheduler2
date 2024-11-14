@@ -1,4 +1,4 @@
-package com.example.scheduler2.controller;
+package com.example.scheduler2.controller.user;
 
 import com.example.scheduler2.dto.user.LoginRequestDto;
 import com.example.scheduler2.service.UserService;
@@ -22,33 +22,36 @@ public class LoginController {
         this.userService = userService;
     }
 
+    //로그인
     @PostMapping("/login")
-    public ResponseEntity<?> login (
+    public ResponseEntity<?> login(
             @RequestBody LoginRequestDto requestDto,
             HttpServletRequest request) {
         boolean isAuth = userService.loginUser(requestDto.getEmail(), requestDto.getPassword());
 
-        if(isAuth) {
+        //true or false 여부에 따라 결과 반환
+        if (isAuth) {
             HttpSession session = request.getSession(true);
             session.setAttribute("email", requestDto.getEmail());
             log.info(session.toString());
             return ResponseEntity.ok("로그인 성공");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패");
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패");
     }
 
+    //로그아웃
     @PostMapping("/logout")
-    public ResponseEntity<?> logout (HttpServletRequest request){
+    public ResponseEntity<?> logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
 
-        if(session != null) {
+        //세션 정보 삭제 하면서 결과값 반환
+        if (session != null) {
             session.invalidate();
             return ResponseEntity.ok("로그아웃 성공");
-        }
-        else return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("로그아웃 실패");
+        } else return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("로그아웃 실패");
 
     }
-
 
 
 }

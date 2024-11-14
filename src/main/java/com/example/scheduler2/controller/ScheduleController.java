@@ -44,7 +44,6 @@ public class ScheduleController {
     }
 
     //선택 일정 수정
-    @Transactional
     @PatchMapping("/{id}")
     public ResponseEntity<ScheduleResponseDto> updateSchedule(
             @PathVariable Long id,

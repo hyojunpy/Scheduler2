@@ -1,4 +1,4 @@
-package com.example.scheduler2.controller;
+package com.example.scheduler2.controller.user;
 
 import com.example.scheduler2.dto.user.CreateUserRequestDto;
 import com.example.scheduler2.dto.user.UserResponseDto;
@@ -22,7 +22,7 @@ public class SignUpController {
 
     //유저 생성
     @PostMapping
-    public ResponseEntity<?> saveUser(@RequestBody CreateUserRequestDto requestDto) {
+    public ResponseEntity<UserResponseDto> saveUser(@RequestBody CreateUserRequestDto requestDto) {
         UserResponseDto userResponseDto = userService.saveUser(requestDto.getUserName(), requestDto.getEmail(), requestDto.getPassword());
 
         return new ResponseEntity<>(userResponseDto, HttpStatus.CREATED);

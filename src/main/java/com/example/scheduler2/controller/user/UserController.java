@@ -1,4 +1,4 @@
-package com.example.scheduler2.controller;
+package com.example.scheduler2.controller.user;
 
 import com.example.scheduler2.dto.user.UpdateUserRrequestDto;
 import com.example.scheduler2.dto.user.UserResponseDto;
@@ -7,7 +7,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.bcel.Const;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,15 +24,15 @@ public class UserController {
 
     //유저 전체 조회
     @GetMapping
-    public  ResponseEntity<?> findAll() {
+    public ResponseEntity<List<UserResponseDto>> findAll() {
         List<UserResponseDto> userResponseDtos = userService.findAll();
 
         return new ResponseEntity<>(userResponseDtos, HttpStatus.OK);
     }
 
-//    선택 유저 조회
+    //선택 유저 조회
     @GetMapping("/{id}")
-    public ResponseEntity<?> findById(
+    public ResponseEntity<UserResponseDto> findById(
             @PathVariable Long id,
             HttpServletRequest request) {
         UserResponseDto userResponseDto = userService.findById(id);
@@ -47,7 +46,7 @@ public class UserController {
     //선택 유저 수정
     @Transactional
     @PatchMapping("/{id}")
-    public ResponseEntity<?> updateSchedule(
+    public ResponseEntity<UserResponseDto> updateSchedule(
             @PathVariable Long id,
             @RequestBody UpdateUserRrequestDto requestDto) {
 
@@ -58,7 +57,7 @@ public class UserController {
 
     //유저 삭제
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
+    public ResponseEntity<UserResponseDto> delete(@PathVariable Long id) {
         userService.deleteSchedule(id);
 
         return new ResponseEntity<>(HttpStatus.OK);

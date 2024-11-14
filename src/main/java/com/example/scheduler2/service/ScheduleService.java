@@ -7,6 +7,7 @@ import com.example.scheduler2.repository.ScheduleRepository;
 import com.example.scheduler2.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -43,6 +44,7 @@ public class ScheduleService {
     }
 
     //선택 일정 수정
+    @Transactional
     public ScheduleResponseDto updateSchedule(Long id, String title, String contents) {
         Schedule findId = scheduleRepository.findByIdOrElseThrow(id);
 
