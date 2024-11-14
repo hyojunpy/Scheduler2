@@ -22,14 +22,14 @@ public class ScheduleController {
     //일정 생성
     @PostMapping
     public ResponseEntity<ScheduleResponseDto> saveSchedule(@RequestBody CreateScheduleRequestDto requestDto) {
-        ScheduleResponseDto scheduleResponseDto = scheduleService.saveSchedule(requestDto.getTitle(), requestDto.getContents());
+        ScheduleResponseDto scheduleResponseDto = scheduleService.saveSchedule(requestDto.getTitle(), requestDto.getContents(), requestDto.getUserId());
 
         return new ResponseEntity<>(scheduleResponseDto, HttpStatus.CREATED);
     }
 
     //일정 전체 조회
     @GetMapping
-    public  ResponseEntity<List<ScheduleResponseDto>> findAll() {
+    public ResponseEntity<List<ScheduleResponseDto>> findAll() {
         List<ScheduleResponseDto> scheduleResponseDtoList = scheduleService.findAll();
 
         return new ResponseEntity<>(scheduleResponseDtoList, HttpStatus.OK);

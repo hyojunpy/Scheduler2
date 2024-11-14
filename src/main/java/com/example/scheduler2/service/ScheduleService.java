@@ -2,7 +2,9 @@ package com.example.scheduler2.service;
 
 import com.example.scheduler2.dto.schedule.ScheduleResponseDto;
 import com.example.scheduler2.entity.Schedule;
+import com.example.scheduler2.entity.User;
 import com.example.scheduler2.repository.ScheduleRepository;
+import com.example.scheduler2.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +15,14 @@ import java.util.List;
 public class ScheduleService {
 
     private final ScheduleRepository scheduleRepository;
+    private final UserRepository userRepository;
 
 
     //일정 생성
-    public ScheduleResponseDto saveSchedule(String title, String contents) {
-
+    public ScheduleResponseDto saveSchedule(String title, String contents, Long userId) {
         Schedule schedule = new Schedule(title, contents);
+        User user = userRepository.findByIdOrElseThrow(userId);
+        schedule.setUser(user);
 
         Schedule savedSchedule = scheduleRepository.save(schedule);
 

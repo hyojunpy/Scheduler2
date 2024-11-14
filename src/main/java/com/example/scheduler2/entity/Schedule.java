@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @Entity
 @Table(name = "schedules")
-public class Schedule extends BaseEntity{
+public class Schedule extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,5 +35,9 @@ public class Schedule extends BaseEntity{
     public void updateSchedule(String title, String contents) {
         this.title = title;
         this.contents = contents;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

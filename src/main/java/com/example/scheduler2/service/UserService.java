@@ -16,8 +16,8 @@ public class UserService {
     private final UserRepository userRepository;
 
     //유저 생성
-    public UserResponseDto saveUser(String userName, String email) {
-        User user = new User(userName, email);
+    public UserResponseDto saveUser(String userName, String email, String password) {
+        User user = new User(userName, email, password);
 
         User saveUser = userRepository.save(user);
 
@@ -42,6 +42,7 @@ public class UserService {
 
         findUser.updateUser(userName, email);
 
+
         return new UserResponseDto(findUser.getUserId(), findUser.getUserName(), findUser.getEmail());
 
     }
@@ -51,5 +52,14 @@ public class UserService {
         User findId = userRepository.findByIdOrElseThrow(userId);
 
         userRepository.deleteById(findId.getUserId());
+    }
+
+    public boolean loginUser(String email, String password) {
+        User user = userRepository.findByEmail(email);
+
+        if(user != null && user.getPassword().equals(password)) {
+            return true;
+        }
+        return false;
     }
 }

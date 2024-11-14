@@ -14,11 +14,14 @@ public class User extends BaseEntity{
     private String userName;
 
     @Column(nullable = false)
-    private  String email;
+    private String email;
 
-    public User( String userName, String email) {
+    private String password;
+
+    public User(String userName, String email ,String password) {
         this.userName = userName;
         this.email = email;
+        this.password = password;
     }
 
     public User() {
