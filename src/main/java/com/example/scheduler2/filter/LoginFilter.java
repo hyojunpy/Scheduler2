@@ -41,6 +41,8 @@ public class LoginFilter implements Filter {
                 throw new RuntimeException("로그인 해주세요.");
             }
 
+
+
         }
         // 1번경우 : whiteListURL에 등록된 URL 요청이면 바로 chain.doFilter()
         // 2번경우 : 필터 로직 통과 후 다음 필터 호출 chain.doFilter()
