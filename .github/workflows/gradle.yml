@@ -53,11 +53,14 @@ jobs:
       # Add GitHub IP to AWS
       - name: Add GitHub IP to AWS
         run: |
-          aws ec2 authorize-security-group-ingress \
-            --group-id ${{ secrets.SECURITY_GROUP_ID }} \
-            --protocol tcp \
-            --port 22 \
-            --cidr $(curl -s https://api.github.com/meta | jq -r '.actions[]')
+          CIDR_BLOCKS=$(curl -s https://api.github.com/meta | jq -r '.actions[]')
+          for CIDR in $CIDR_BLOCKS; do
+            aws ec2 authorize-security-group-ingress \
+              --group-id ${{ secrets.SECURITY_GROUP_ID }} \
+              --protocol tcp \
+              --port 22 \
+              --cidr "$CIDR" || echo "CIDR $CIDR already exists or cannot be added."
+          done
 
   deploy:
     name: Deploy
